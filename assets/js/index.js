@@ -6,7 +6,7 @@ const randomWordDisplay = document.querySelector('.random-word p');
 const hitCounter = document.querySelector('.hit-counter p');
 const inputArea = document.querySelector('.input-area input');
 
-const gameplaySound = new Audio('./assets/audio/sound4.mp3'); 
+const gameplaySound = new Audio('./assets/audio/sound5.mp3'); 
 const gameOverSound = new Audio('./assets/audio/sound3.mp3');
 
 gameplaySound.loop = true;
