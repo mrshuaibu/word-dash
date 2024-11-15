@@ -59,13 +59,15 @@ body {
 
 .video-container video {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
     min-width: 100%;
     min-height: 100%;
-    object-fit: cover; 
-    pointer-events: none;
+    object-fit: cover;
+    pointer-events: none;    
 }
 
 .general {
