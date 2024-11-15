@@ -105,6 +105,7 @@ body {
     width: 90px;
     border-radius: var(--app-border-radius);
     padding: 5px;
+    cursor: pointer;
 }
 
 .start-button:hover {
@@ -158,4 +159,5 @@ body {
 .creator p {
     cursor: default;
     margin-bottom: 10px;
+    font-size: 17px;
 }
