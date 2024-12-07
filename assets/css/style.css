@@ -156,6 +156,9 @@ body {
     padding: 5px;
     border-radius: var(--app-border-radius);
     text-align: center;
+    border: none;
+    box-shadow: none;
+    outline: none;
 }
 
 .creator p {

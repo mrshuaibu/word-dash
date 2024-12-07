@@ -1,48 +1,18 @@
 'use strict';
 
+import { wordBank } from './words.js';
+
 const startButton = document.querySelector('.start-button');
 const timeCounter = document.querySelector('.time-counter p');
 const randomWordDisplay = document.querySelector('.random-word p');
 const hitCounter = document.querySelector('.hit-counter p');
 const inputArea = document.querySelector('.input-area input');
 
-const gameplaySound = new Audio('./assets/audio/sound2.mp3'); 
-const gameOverSound = new Audio('./assets/audio/sound3.mp3');
+const gameplaySound = new Audio('./assets/audio/bgsound.mp3'); 
+const gameOverSound = new Audio('./assets/audio/gamover.wav');
 
 gameplaySound.loop = true;
 gameOverSound.loop = true;
-
-let wordBank = [
-    'dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population',
-    'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute',
-    'discipline', 'machine', 'accurate', 'connection', 'rainbow', 'bicycle',
-    'eclipse', 'calculator', 'trouble', 'watermelon', 'developer', 'philosophy',
-    'database', 'periodic', 'capitalism', 'abominable', 'phone', 'component',
-    'future', 'pasta', 'microwave', 'jungle', 'wallet', 'canada', 'velvet',
-    'potion', 'treasure', 'beacon', 'labyrinth', 'whisper', 'breeze', 'coffee',
-    'beauty', 'agency', 'chocolate', 'eleven', 'technology', 'alphabet', 'knowledge',
-    'magician', 'professor', 'triangle', 'earthquake', 'baseball', 'beyond',
-    'evolution', 'banana', 'perfume', 'computer', 'butterfly', 'discovery',
-    'ambition', 'music', 'eagle', 'crown', 'chess', 'laptop', 'bedroom', 'delivery',
-    'enemy', 'button', 'door', 'bird', 'superman', 'library', 'unboxing',
-    'bookstore', 'language', 'homework', 'beach', 'economy', 'interview', 'awesome',
-    'challenge', 'science', 'mystery', 'famous', 'league', 'memory', 'leather',
-    'planet', 'software', 'update', 'yellow', 'keyboard', 'window', 'beans',
-    'truck', 'sheep', 'blossom', 'secret', 'wonder', 'enchantment', 'destiny',
-    'quest', 'sanctuary', 'download', 'blue', 'actor', 'desk', 'watch', 'giraffe',
-    'brazil', 'audio', 'school', 'detective', 'hero', 'progress', 'winter', 'passion',
-    'rebel', 'amber', 'jacket', 'article', 'paradox', 'social', 'resort', 'mask',
-    'escape', 'promise', 'band', 'level', 'hope', 'moonlight', 'media', 'orchestra',
-    'volcano', 'guitar', 'raindrop', 'inspiration', 'diamond', 'illusion', 'firefly',
-    'ocean', 'cascade', 'journey', 'laughter', 'horizon', 'exploration', 'serendipity',
-    'infinity', 'silhouette', 'wanderlust', 'marvel', 'nostalgia', 'serenity',
-    'reflection', 'twilight', 'harmony', 'symphony', 'solitude', 'essence',
-    'melancholy', 'melody', 'vision', 'silence', 'whimsical', 'eternity',
-    'cathedral', 'embrace', 'poet', 'ricochet', 'mountain', 'dance', 'sunrise',
-    'dragon', 'adventure', 'galaxy', 'echo', 'fantasy', 'radiant', 'serene',
-    'legend', 'starlight', 'light', 'pressure', 'bread', 'cake', 'caramel',
-    'juice', 'mouse', 'charger', 'pillow', 'candle', 'film', 'jupiter'
-];
 
 class Score {
     #date;
@@ -87,7 +57,7 @@ function endGame() {
 }
 
 let gameInterval, timerInterval;
-let timeRemaining = 99; 
+let timeRemaining = 20; 
 let hits = 0;
 let gameStarted = false;
 
@@ -98,32 +68,35 @@ function startGame() {
 
     startButton.textContent = 'RESTART';
     gameStarted = true;
-    timeRemaining = 99;
-    hits = 0; 
+    timeRemaining = 20;
+    hits = 0;
     hitCounter.textContent = "0 HITS";
-    timeCounter.textContent = `${timeRemaining}`; 
-    inputArea.placeholder = ''; 
-    shuffleWords();
+    timeCounter.textContent = `${timeRemaining}`;
+    inputArea.placeholder = '';
+    shuffleWords = [...wordBank].sort(() => Math.random() - 0.5);
     displayNewWord();
-    clearInterval(timerInterval); 
-    startTimer(); 
+    clearInterval(timerInterval);
+    startTimer();
+    gameplaySound.pause();
+    gameplaySound.currentTime = 0; 
+    gameplaySound.play();
     gameOverSound.pause();
     gameOverSound.currentTime = 0;
-    gameplaySound.play();
 }
 
 function resetGame() {
-    clearInterval(timerInterval); 
+    clearInterval(timerInterval);
     gameStarted = false;
     timeRemaining = 99;
-    hits = 0; 
-    inputArea.value = ''; 
-    inputArea.placeholder = ''; 
+    hits = 0;
+    inputArea.value = '';
+    inputArea.placeholder = '';
     timeCounter.textContent = "---";
     hitCounter.textContent = "0 HITS";
     randomWordDisplay.textContent = '';
     startButton.textContent = 'START';
     gameplaySound.pause();
+    gameplaySound.currentTime = 0; 
     gameOverSound.pause();
 }
 
