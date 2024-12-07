@@ -166,3 +166,57 @@ body {
     margin-bottom: 10px;
     font-size: 17px;
 }
+
+.scoreboard-area {
+    flex-direction: column;
+    gap: 70px;
+    position: fixed;
+    top: 0;
+    right: -1300px; 
+    width: auto;
+    background-color: #2a2a54;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 0.2);
+    transition: right 0.5s ease-in-out; 
+    z-index: 1000; 
+    align-items: center;
+    text-align: center;
+}
+
+.scoreboard-area.visible {
+    right: 0;
+}
+
+.scoreboard {
+    flex-direction: column;
+    gap: 20px;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.scoreboard div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.scoreboard div span {
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+
+.clear-scoreboard {
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #f44336;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.clear-scoreboard:hover {
+    background-color: #e53935;
+}
